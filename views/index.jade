@@ -2,4 +2,14 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  form
+    fieldset.code
+      legend Enter your code here
+      - var attributes = { 'autocomplete': 'off', 'cols': '80', 'rows': '30', 'spellcheck': 'false' }
+      textarea#code(name='code')&attributes(attributes)
+    fieldset.code
+      legend Enter your tests here
+      textarea#tests(name='tests')&attributes(attributes)
+    button#submit Test!
+script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
+script(src='js/form.js')

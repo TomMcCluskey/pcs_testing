@@ -29,13 +29,14 @@ app.use('/users', users);
 
 app.get('/', function (req, res) {
   // console.log('app.get on /');
-  res.render('./index.html');
-  // console.log('index.html render complete');
+  res.render('index');
+  console.log('index.html render complete');
 });
 
 app.post(/tmp.{5}/, function (req, res) {
   // console.log('app.post on temp directory');
   tester(req.body);
+  res.render('index', tester(req.body));
   // console.log(req.body);
   // console.log('index.html render complete');
 });

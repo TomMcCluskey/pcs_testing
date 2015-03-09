@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  form
+  form(method='POST')
     fieldset.code
       legend Enter your code here
       - var attributes = { 'autocomplete': 'off', 'cols': '80', 'rows': '30', 'spellcheck': 'false' }
@@ -10,6 +10,6 @@ block content
     fieldset.code
       legend Enter your tests here
       textarea#tests(name='tests')&attributes(attributes)
-    button#submit Test!
+    button#submit(formaction='/done') Test!
+    div#mocha
   script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
-  script(src='js/form.js')

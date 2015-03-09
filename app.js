@@ -28,17 +28,17 @@ app.use('/users', users);
 // express routes
 
 app.get('/', function (req, res) {
-  // console.log('app.get on /');
   res.render('index');
-  console.log('index.html render complete');
 });
 
-app.post(/tmp.{5}/, function (req, res) {
-  // console.log('app.post on temp directory');
+app.post('/done', function (req, res) {
   tester(req.body);
-  res.render('index', tester(req.body));
-  // console.log(req.body);
-  // console.log('index.html render complete');
+  res.render('output');
+});
+
+app.get(/tmp.{5}/, function (req, res) {
+  tester(req.body);
+  res.render('output');
 });
 
 /// catch 404 and forward to error handler

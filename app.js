@@ -32,11 +32,12 @@ app.get('/', function (req, res) {
 });
 
 app.post('/done', function (req, res) {
+  // console.log(req.body);
   tester(req.body);
   res.render('output');
 });
 
-app.get(/tmp.{5}/, function (req, res) {
+app.get(/tmp.{7-14}/, function (req, res) {
   tester(req.body);
   res.render('output');
 });

@@ -3,9 +3,10 @@ extends layout
 block content
   div#mocha
     h1= title
+    p 'dirName: + #{dirName}'
   script(src='/mocha/mocha.js')
   script(src='chai/chai.js')
   script assert = chai.assert;
   script mocha.setup('bdd');
-  script(src='tests/test.js')
+  script(src='#{dirName}/test.js')
   script $(mocha.run());

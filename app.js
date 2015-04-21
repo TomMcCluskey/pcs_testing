@@ -33,13 +33,15 @@ app.get('/', function (req, res) {
 
 app.post('/done', function (req, res) {
   // console.log(req.body);
-  tester(req.body);
-  res.render('output');
+  tester.runTests(req.body, function() {
+    res.render('output', {dirName: tester.dirName});
+  });
 });
 
 app.get(/tmp.{7-14}/, function (req, res) {
-  tester(req.body);
-  res.render('output');
+  tester.runTests(req.body);
+  console.log('dirName: ', tester.dirName);
+  res.render('output', {dirName: tester.dirName});
 });
 
 /// catch 404 and forward to error handler

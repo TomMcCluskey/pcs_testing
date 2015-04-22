@@ -9,7 +9,6 @@ module.exports = {
     var tmpDir = 'tmp' + shortid.generate();
     var dirName = 'public/' + tmpDir;
     this.dirName = tmpDir;
-    console.log('test:', package.test);
     var tests = fs.readFileSync( 'public/tests/' + package.test + '.js');
     fs.mkdir(dirName, function() {
       fs.writeFile(dirName + '/test.js', code, function() {
@@ -17,11 +16,11 @@ module.exports = {
           render();
           mocha.addFile(dirName + '/test.js');
           mocha.run(function(failures){
-            console.log('running');
+            // these appear to fire before the page loads, resulting in a 404
+            // need a callback on the client to trigger deletion?
             // fs.unlinkSync(dirName + '/test.js');
             // fs.rmdirSync(dirName);
             process.on('exit', function () {
-              console.log('exiting');
               process.exit(failures);
             });
           });

@@ -9,3 +9,4 @@ block content
   script mocha.setup('bdd');
   script(src='#{dirName}/test.js')
   script $(mocha.run());
+  script $($.ajax({ type: 'DELETE', url: '#{dirName}'}));

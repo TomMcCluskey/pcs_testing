@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var tester = require('./tester.js');
 var Mocha = require('mocha');
+var fs = require('fs');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -38,10 +39,13 @@ app.post('/done', function (req, res) {
   });
 });
 
-app.get(/tmp.{7-14}/, function (req, res) {
-  tester.runTests(req.body);
-  console.log('dirName: ', tester.dirName);
-  res.render('output', {dirName: tester.dirName});
+app.delete(/tmp[a-zA-Z0-9_-]{7,14}/, function (req, res) {
+  console.log(req.url);
+  fs.unlink('./public/' + req.url + '/test.js', function() {
+    fs.rmdir('./public/' + req.url, function() {
+      res.end();
+    });
+  });
 });
 
 /// catch 404 and forward to error handler

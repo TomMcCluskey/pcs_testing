@@ -16,10 +16,6 @@ module.exports = {
           render();
           mocha.addFile(dirName + '/test.js');
           mocha.run(function(failures){
-            // these appear to fire before the page loads, resulting in a 404
-            // need a callback on the client to trigger deletion?
-            // fs.unlinkSync(dirName + '/test.js');
-            // fs.rmdirSync(dirName);
             process.on('exit', function () {
               process.exit(failures);
             });

@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var tester = require('./tester.js');
 var Mocha = require('mocha');
 var fs = require('fs');
+var shortid = require('shortid'); // Generates unique string IDs
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -33,9 +34,9 @@ app.get('/', function (req, res) {
 });
 
 app.post('/done', function (req, res) {
-  // console.log(req.body);
-  tester.runTests(req.body, function() {
-    res.render('output', {dirName: tester.dirName});
+  var tempDir = 'tmp' + shortid.generate();
+  tester(req.body, tempDir, function() {
+    res.render('output', {dirName: tempDir});
   });
 });
 

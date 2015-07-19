@@ -5,7 +5,7 @@ describe('Object comparison functions', function() {
   context('copy', function() {
     it('should create a copy of the object passed in to it', function() {
       var obj = {a:1, b:2};
-      assert.deepEqual(obj, copy(obj));
+      expect(obj).to.deep.equal(copy(obj));
     });
   });
   context('equal', function() {

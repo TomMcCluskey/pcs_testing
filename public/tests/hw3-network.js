@@ -1,22 +1,26 @@
 describe('people', function() {
   it('should be an object', function() {
-    assert.typeOf(people, 'object');
+    expect(people).to.be.an('object');
   });
   describe('people.index', function() {
     it('should be an object', function() {
-      assert.typeOf(people.index, 'object');
+      expect(people.index).to.be.an('object');
     });
   });
   describe('people.meet', function() {
-    people.meet('Frodo', 'Samwise');
+
+    before(function() {
+      people.meet('Frodo', 'Samwise');
+    });
+
     it('should be a function', function() {
-      assert.typeOf(people.meet, 'function');
+      expect(people.meet).to.be.a('function');
     });
     // Apparently hoisting means that everyone gets passed into the index
     // before the tests run, even though the friend index counts don't
     // get updated? Weird stuff.
     it('should update people.index with the two names passed in', function() {
-      assert.deepEqual(Object.getOwnPropertyNames(people.index), ['Frodo', 'Samwise', 'Theoden', 'Eowyn', 'Tom', 'Boromir', 'Faramir', 'Denethor']);
+      expect(Object.getOwnPropertyNames(people.index).to.deep.equal(['Frodo', 'Samwise', 'Theoden', 'Eowyn', 'Tom', 'Boromir', 'Faramir', 'Denethor']));
     });
     it('should update each person\'s friend index', function() {
       assert.deepEqual(people.index.Frodo.friends, {'Samwise': 1, 'Tom': 1, 'Boromir': 1, 'Faramir': 1});
@@ -32,7 +36,11 @@ describe('people', function() {
     });
   });
   describe('people.haveMet', function() {
-    people.meet('Theoden', 'Eowyn');
+
+    before(function() {
+      people.meet('Theoden', 'Eowyn');
+    });
+
     it('should be a function', function() {
       assert.typeOf(people.haveMet, 'function');
     });

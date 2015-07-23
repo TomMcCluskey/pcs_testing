@@ -1,5 +1,11 @@
+/*$background: */
+/*$dark: #2c3e50;
+$light: #95a5a6;
+$accent: #1abc9c;*/
+
 body {
   padding: 50px;
+  /*background-color: #ecf0f1;*/
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -14,8 +20,39 @@ a {
   width: 45%;
   float: left;
 }
+
+form {
+  /*text-align: left;*/
+}
+
+button, select {
+  margin-left: 25px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  font-family: Arial;
+  color: #1abc9c;
+  background: white;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  border: solid #1abc9c 2px;
+  text-decoration: none;
+}
+
+button:hover, select:hover {
+  background: #1abc9c;
+  color: white;
+  text-decoration: none;
+}
+
 button {
-  text-align: center;
+  /*text-align: center;*/
   width: 6em;
-  margin: auto;
+  margin-top: 15px;
+  /*margin: */
+}
+
+select {
+  border-radius: 0px;
+  height: 50px;
 }

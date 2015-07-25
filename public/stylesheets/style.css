@@ -12,9 +12,14 @@ body {
 a {
   color: #00B7FF;
 }
+.exports {
+  /*display:inline-block;*/
+  float:left;
+}
 .code {
   width: 45%;
   float: left;
+  clear: both;
 }
 .tests {
   width: 45%;

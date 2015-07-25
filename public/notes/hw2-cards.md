@@ -1,0 +1,5 @@
+rank(id)
+suit(id)
+cardId(rank,suit)
+color(id)
+name(id)

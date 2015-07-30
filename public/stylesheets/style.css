@@ -14,7 +14,8 @@ html, body {
 }
 
 body {
-  background: #ECF3F3;  
+  color: #2c3e50;
+  background: #ecf0f1;
   text-align: center;
   font-family: Source Sans Pro, Arial, sans-serif;
   /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
@@ -61,16 +62,16 @@ button, select {
   -moz-border-radius: 0;
   border-radius: 0px;
   font-family: Arial;
-  color: #1abc9c;
+  color: #34495e;
   background: transparent;
   font-size: 20px;
   padding: 8px 8px 8px 8px;
-  border: solid #1abc9c 2px;
+  border: solid #34495e 2px;
   text-decoration: none;
 }
 
 button:hover, select:hover {
-  background: #1abc9c;
+  background: #34495e;
   color: white;
   text-decoration: none;
 }
@@ -87,7 +88,7 @@ select {
 } 
 
 legend {
-  color: #1abc9c;
+  color: #34495e;
 }
 
 @media screen and (min-width: 700px) {

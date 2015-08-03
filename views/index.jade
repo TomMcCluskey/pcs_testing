@@ -4,7 +4,7 @@ block content
   h1= title
   form(method='POST')
     fieldset.exports
-      legend Functions to be Tested
+      legend Functions/Objects to be Tested
       - var attributes = { 'autocomplete': 'off', 'cols': '28', 'rows': '4', 'spellcheck': 'false' }
       textarea#exports(name='exports' readonly)&attributes(attributes)
     select#testSelector(name='test')
@@ -15,12 +15,11 @@ block content
         option(value='hw2-song') 3b: Song lyrics
         option(value='hw2-and') 4: && simulator
         option(value='hw2-cards') 5a,b: Cards
-    //- Hide until future weeks:
       optgroup(label='Week 3')
-        option(value='hw3-arrays') Arrays      
-        option(value='hw3-cards') Cards
-        option(value='hw3-network') Social Network
-        option(value='hw3-cards') Tests
+        option(value='hw3-cards') 1: Cards
+        option(value='hw3-arrays') 2: Testing arrays      
+        option(value='hw3-network') 4: Social Network
+    //- Hide until future weeks:
       optgroup(label='Week 4')
         option(value='hw4-deque') Deque
         option(value='hw4-factory') Factory

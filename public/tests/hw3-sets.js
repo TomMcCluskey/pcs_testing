@@ -7,17 +7,17 @@
 
 
 // --- The code to be tested: ---
-var sets = require('../sets.js'),
+/*var sets = require('../sets.js'),
     union = sets.union,
     intersection = sets.intersection,
     difference = sets.difference,
     equal = sets.equal,
     similar = sets.similar,
     copy = sets.copy;
-
+*/
 // Various helper functions...
-var tools = require('../testing-tools.js');
-    withRandomSamples = tools.withRandomSamples;
+//var testTools = require('../testing-testTools.js');
+//var withRandomSamples = testTools.withRandomSamples;
 
 
 //--- Describe test suite ---
@@ -25,9 +25,10 @@ var tools = require('../testing-tools.js');
 //comparison/copy:
 //describe("copy(A)");
 describe("copy(A,B)", function() {
-    it("should produce objects passing tools.equal(A,B)", function() {
-        withRandomSamples(copy,function(abc){
-            assert(tools.equal(abc.a,abc.c));
+    it("should produce objects passing testTools.equal(A,B)", function() {
+        testTools.withRandomSamples(copy,function(abc){
+            expect(abc.a).to.deep.equal(abc.c);
+            //assert(testTools.equal(abc.a,abc.c));
         })
     });
 });
@@ -55,17 +56,19 @@ describe("equal(A,B)", function() {
     */
     //it("should be false if A and B share a property unequal in value");
     //it("should be true otherwise");
-    it("should match results of tools.equal(A,B)", function() {
-        withRandomSamples(equal,function(abc){
-            assert(abc.c === tools.equal(abc.a,abc.b));
+    it("should match results of testTools.equal(A,B)", function() {
+        testTools.withRandomSamples(equal,function(abc){
+            expect(abc.c).to.equal(testTools.equal(abc.a,abc.b));
+            //assert(abc.c === testTools.equal(abc.a,abc.b));
         })
     });
 });
 
 describe("similar(A,B)", function() {
-    it("should match results of tools.similar(A,B)", function() {
-        withRandomSamples(similar,function(abc){
-            assert(abc.c === tools.similar(abc.a,abc.b));
+    it("should match results of testTools.similar(A,B)", function() {
+        testTools.withRandomSamples(similar,function(abc){
+            expect(abc.c).to.equal(testTools.similar(abc.a,abc.b));
+            //assert(abc.c === testTools.similar(abc.a,abc.b));
         })
     })
 })
@@ -73,19 +76,22 @@ describe("similar(A,B)", function() {
 // set operations
 describe("intersection(A,B)", function() {
     it("should have value (A.prop && B.prop) for shared properties", function() {
-        withRandomSamples(intersection,function(abc){
+        testTools.withRandomSamples(intersection,function(abc){
             for (var key in abc.c) {
                 if ((key in abc.a) && (key in abc.b)) {
-                    assert.equal(abc.c[key], abc.a[key] && abc.b[key]);
+                    expect(abc.c[key]).to.equal(abc.a[key] && abc.b[key]);
+                    //assert.equal(abc.c[key], abc.a[key] && abc.b[key]);
                 }
             }
         });
     });
     it("should have no other properties", function() {
-        withRandomSamples(intersection,function(abc){
+        testTools.withRandomSamples(intersection,function(abc){
             for (var key in abc.c) {
-                assert(key in abc.a, key);
-                assert(key in abc.b, key);
+                expect(key in abc.a).to.be.true;
+                expect(key in abc.b).to.be.true;
+                //assert(key in abc.a, key);
+                //assert(key in abc.b, key);
             }
         });
     });
@@ -93,46 +99,50 @@ describe("intersection(A,B)", function() {
 
 describe("union(A,B)", function() {
     it("should include any property in A", function() {
-        withRandomSamples(union,function(abc){
+        testTools.withRandomSamples(union,function(abc){
             for (var key in abc.a) {
-                assert(key in abc.c);
+                expect(key in abc.c).to.be.true;
+                //assert(key in abc.c);
             }
         });
     });
     it("should include any property in B", function() {
-        withRandomSamples(union,function(abc){
+        testTools.withRandomSamples(union,function(abc){
             for (var key in abc.b) {
-                assert(key in abc.c);
+                expect(key in abc.c).to.be.true;
+                //assert(key in abc.c);
             }
         });
     });
     it("should match A's values for A-only properties", function() {
-        withRandomSamples(union,function(abc){
+        testTools.withRandomSamples(union,function(abc){
             for (var key in abc.a) {
                 if (!(key in abc.b)) {
-                    assert.equal(abc.c[key], abc.a[key]);
+                    expect(abc.c[key]).to.equal(abc.a[key]);
+                    //assert.equal(abc.c[key], abc.a[key]);
                 }
             }
         });
     });
     it("should match B's values for B-only properties", function() {
-        withRandomSamples(union,function(abc){
+        testTools.withRandomSamples(union,function(abc){
             for (var key in abc.b) {
                 if (!(key in abc.a)) {
-                    assert.equal(abc.c[key], abc.b[key]);
+                    expect(abc.c[key]).to.equal(abc.b[key]);
+                    //assert.equal(abc.c[key], abc.b[key]);
                 }
             }
         });
     });
     it("should have value (A.prop||B.prop) for shared properties", function() {
-        withRandomSamples(union,function(abc){
+        testTools.withRandomSamples(union,function(abc){
             for (var key in abc.c) {
                 if ((key in abc.a) && (key in abc.b)) {
                     // assert version:
-                    assert.equal(abc.c[key], abc.a[key] || abc.b[key]);
+                    //assert.equal(abc.c[key], abc.a[key] || abc.b[key]);
 
                     // chai.expect version:
-                    //expect(abc.c[key]).to.equal(abc.a[key] || abc.b[key]);
+                    expect(abc.c[key]).to.equal(abc.a[key] || abc.b[key]);
 
                     // should version:
                     //abc.c[key].should.equal(abc.a[key] || abc.b[key]);
@@ -141,9 +151,10 @@ describe("union(A,B)", function() {
         });
     });
     it("should have no other properties", function() {
-        withRandomSamples(union,function(abc){
+        testTools.withRandomSamples(union,function(abc){
             for (var key in abc.c) {
-                assert((key in abc.a) || (key in abc.b));
+                expect((key in abc.a) || (key in abc.b)).to.be.true;
+                //assert((key in abc.a) || (key in abc.b));
             }
         });
     })
@@ -151,19 +162,22 @@ describe("union(A,B)", function() {
 
 describe("difference(A,B)", function() {
     it("should match A's values for A-only properties", function() {
-        withRandomSamples(difference,function(abc){
+        testTools.withRandomSamples(difference,function(abc){
             for (var key in abc.a) {
                 if (!(key in abc.b)) {
-                    assert.equal(abc.a[key], abc.c[key]);
+                    expect(abc.a[key]).to.equal(abc.c[key]);
+                    //assert.equal(abc.a[key], abc.c[key]);
                 }
             }
         })
     });
     it("should have no other properties", function() {
-        withRandomSamples(difference,function(abc){
+        testTools.withRandomSamples(difference,function(abc){
             for (var key in abc.c) {
-                assert(key in abc.a, key);
-                assert(!(key in abc.b), key);
+                expect(key in abc.a).to.be.true;
+                //assert(key in abc.a, key);
+                expect(key in abc.b).to.not.be.true;
+                //assert(!(key in abc.b), key);
             }
         })
     });

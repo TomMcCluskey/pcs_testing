@@ -16,7 +16,7 @@ html, body {
 body {
   color: #2c3e50;
   background: #ecf0f1;
-  text-align: center;
+  /*text-align: center; INTERFERES w. MOCHA! */
   font-family: Source Sans Pro, Arial, sans-serif;
   /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
 }
@@ -32,6 +32,7 @@ body {
 
 .test-options {
   margin: 15px;
+  text-align:center;
 }
 
 form {

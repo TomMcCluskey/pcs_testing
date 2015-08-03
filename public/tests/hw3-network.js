@@ -1,3 +1,17 @@
+
+function assert() {
+};
+assert.typeOf = function(val,type) {
+    expect(typeof val).to.equal(type);
+  };
+assert.deepEqual = function(a,b) {
+    expect(a).to.deep.equal(b);
+  };
+assert.equal = function(a,b) {
+    expect(a).to.equal(b);
+  };
+
+
 describe('people', function() {
   it('should be an object', function() {
     assert.typeOf(people, 'object');

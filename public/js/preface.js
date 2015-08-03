@@ -1,5 +1,5 @@
 $(function(){
-	function refreshExports() {
+	function refreshNotes() {
 		//console.log(this.value);
 		$.get('/notes/'+this.value+'.md')
 		 .done(function(res){
@@ -9,5 +9,5 @@ $(function(){
 		 	$('#exports').val('');
 		 })
 	}
-	$('#testSelector').change(refreshExports).trigger('change');
+	$('#testSelector').change(refreshNotes).trigger('change');
 })
